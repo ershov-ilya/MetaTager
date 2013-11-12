@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e28c5bb7-1fc8-4fa1-8abb-25197fd5cad1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/components/metatager/elements/snippets/metatager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_build/data/transport.snippets.php" afterPath="$PROJECT_DIR$/_build/data/transport.snippets.php" />
-    </list>
+    <list default="true" id="e28c5bb7-1fc8-4fa1-8abb-25197fd5cad1" name="Default" comment="" />
     <ignored path="MetaTager.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,7 +37,7 @@
       <file leaf-file-name="transport.snippets.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_build/data/transport.snippets.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="4" selection-start="130" selection-end="130" vertical-scroll-proportion="0.15650173" vertical-offset="0" max-vertical-offset="869">
+            <state line="8" column="164" selection-start="161" selection-end="290" vertical-scroll-proportion="0.15650173" vertical-offset="0" max-vertical-offset="869">
               <folding />
             </state>
           </provider>
@@ -340,7 +337,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1066" extended-state="7" />
+    <frame x="-8" y="-8" width="1696" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -429,7 +426,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_build/data/transport.snippets.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="4" selection-start="130" selection-end="130" vertical-scroll-proportion="0.15650173" vertical-offset="0" max-vertical-offset="869">
+        <state line="8" column="164" selection-start="161" selection-end="290" vertical-scroll-proportion="0.15650173" vertical-offset="0" max-vertical-offset="869">
           <folding />
         </state>
       </provider>
