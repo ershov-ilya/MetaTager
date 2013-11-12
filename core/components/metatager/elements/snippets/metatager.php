@@ -82,8 +82,8 @@ $output.='<link rel="shortcut icon" href="'.$config['favicon_path'].'" />'.$n;
 
 // Title
 // Logic: "specific_title (TV)" or "longtitle - sitename" or "pagetitle - sitename"
-$title = $arr['pagetitle'];
-if(!empty($arr['longtitle'])) $title = $arr['longtitle'];
+$title = $arr['pagetitle'].' - '.$arr['site_name'];
+if(!empty($arr['longtitle'])) $title = $arr['longtitle'].' - '.$arr['site_name'];
 if(!empty($arr['specific_title'])) $title = $arr['specific_title'];
 $output.='<title>'.$title.'</title>'.$n;
 

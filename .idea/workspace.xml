@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e28c5bb7-1fc8-4fa1-8abb-25197fd5cad1" name="Default" comment="" />
+    <list default="true" id="e28c5bb7-1fc8-4fa1-8abb-25197fd5cad1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/components/metatager/elements/snippets/metatager.php" afterPath="$PROJECT_DIR$/core/components/metatager/elements/snippets/metatager.php" />
+    </list>
     <ignored path="MetaTager.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="metatager.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="metatager.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/components/metatager/elements/snippets/metatager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="38" selection-start="3405" selection-end="3405" vertical-scroll-proportion="-31.307692" vertical-offset="886" max-vertical-offset="1802">
+            <state line="86" column="21" selection-start="2888" selection-end="2888" vertical-scroll-proportion="0.61451244" vertical-offset="920" max-vertical-offset="1802">
               <folding>
                 <element signature="e#6#181#0" expanded="true" />
               </folding>
@@ -34,19 +36,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="transport.snippets.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/_build/data/transport.snippets.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="164" selection-start="161" selection-end="290" vertical-scroll-proportion="0.15650173" vertical-offset="0" max-vertical-offset="869">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="testmetatager.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/AppData/Local/Temp/scp55026/www/core/components/testmetatager/testmetatager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="38" selection-start="0" selection-end="3405" vertical-scroll-proportion="-65.38461" vertical-offset="0" max-vertical-offset="1802">
+            <state line="23" column="9" selection-start="841" selection-end="841" vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="1802">
               <folding>
                 <element signature="e#6#181#0" expanded="true" />
               </folding>
@@ -83,8 +76,8 @@
       <list>
         <option value="$USER_HOME$/AppData/Local/Temp/scp47642/baltgaz.com/docs/assets/baltgaz/lib/sitescripts.js" />
         <option value="$USER_HOME$/AppData/Local/Temp/scp55026/www/core/components/testmetatager/testmetatager.php" />
-        <option value="$PROJECT_DIR$/core/components/metatager/elements/snippets/metatager.php" />
         <option value="$PROJECT_DIR$/_build/data/transport.snippets.php" />
+        <option value="$PROJECT_DIR$/core/components/metatager/elements/snippets/metatager.php" />
       </list>
     </option>
   </component>
@@ -406,9 +399,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/_build/data/transport.snippets.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="26" selection-start="98" selection-end="98" vertical-scroll-proportion="0.1173763" vertical-offset="0" max-vertical-offset="869">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/scp55026/www/core/components/testmetatager/testmetatager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="38" selection-start="0" selection-end="3405" vertical-scroll-proportion="-65.38461" vertical-offset="0" max-vertical-offset="1802">
+        <state line="23" column="9" selection-start="841" selection-end="841" vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="1802">
           <folding>
             <element signature="e#6#181#0" expanded="true" />
           </folding>
@@ -417,17 +417,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/components/metatager/elements/snippets/metatager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="38" selection-start="3405" selection-end="3405" vertical-scroll-proportion="-31.307692" vertical-offset="886" max-vertical-offset="1802">
+        <state line="86" column="21" selection-start="2888" selection-end="2888" vertical-scroll-proportion="0.61451244" vertical-offset="920" max-vertical-offset="1802">
           <folding>
             <element signature="e#6#181#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_build/data/transport.snippets.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="164" selection-start="161" selection-end="290" vertical-scroll-proportion="0.15650173" vertical-offset="0" max-vertical-offset="869">
-          <folding />
         </state>
       </provider>
     </entry>
