@@ -3,8 +3,9 @@
  * Project: MetaTager
  * File:    metatager.php
  * Date: 12.11.13, time: 13:16
- * Author:  MrAgr3ssive
- * GitHub:  http://github.com/MrAgr3ssive
+ * Author:  ILYA ERSHOV
+ * http://about.me/ershov.ilya
+ * GitHub:  https://github.com/ershov-ilya
  * Edited in PhpStorm.
  */
 
@@ -98,4 +99,4 @@ $description = ($arr['description'])?($arr['description']):($arr['introtext']);
 if(empty($description)) $description = $title;
 $output.='<meta name="description" content="'.$description.'"/>'."\n";
 
-if($config['debug']==0) print $output;
+if($config['debug']==0) return $output;
