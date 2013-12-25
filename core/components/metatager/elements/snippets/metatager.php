@@ -2,10 +2,9 @@
 /**
  * Project: MetaTager
  * File:    metatager.php
- * Date: 12.11.13, time: 13:16
- * Author:  ILYA ERSHOV
- * http://about.me/ershov.ilya
- * GitHub:  https://github.com/ershov-ilya
+ * Date: 25.12.13, time: 19:22
+ * Author:  MrAgr3ssive
+ * GitHub:  http://github.com/MrAgr3ssive
  * Edited in PhpStorm.
  */
 
@@ -57,6 +56,13 @@ $arr['description'] = $resource->get('description');
 // Keywords
 if(!empty($config['keywords'])) $arr['keywords'] = $config['keywords'];
 else $arr['keywords'] = $resource->getTVValue($config['kwTVname']);
+// SEOPro compability
+$seoPro = $modx->getService('seopro','seoPro',$modx->getOption('seopro.core_path',null,$modx->getOption('core_path').'components/seopro/').'model/seopro/',$config);
+$seoKeywords = $modx->getObject('seoKeywords', array('resource' => $config['id']));
+if($seoKeywords){
+  $arr['keywords'] = $seoKeywords->get('keywords');
+}
+
 // TVs
 $arr['specific_title'] = $resource->getTVValue($config['spec_titleTVname']);
 
@@ -99,4 +105,4 @@ $description = ($arr['description'])?($arr['description']):($arr['introtext']);
 if(empty($description)) $description = $title;
 $output.='<meta name="description" content="'.$description.'"/>'."\n";
 
-if($config['debug']==0) return $output;
+if($config['debug']==0) print $output;
