@@ -31,6 +31,7 @@ $defconfig = array(
 	'favicon_path' => "/favicon.ico",
 	'spec_titleTVname' => "specific_title",
 	'scheme' => "full", // syntax of modX.makeUrl
+	'delimiter' => '-',
 	'minify' => '0',
 	'debug' => '0'
 );
@@ -89,8 +90,8 @@ $output.='<link rel="shortcut icon" href="'.$config['favicon_path'].'" />'.$n;
 
 // Title
 // Logic: "specific_title (TV)" or "longtitle - sitename" or "pagetitle - sitename"
-$title = $arr['pagetitle'].' - '.$arr['site_name'];
-if(!empty($arr['longtitle'])) $title = $arr['longtitle'].' - '.$arr['site_name'];
+$title = $arr['pagetitle'].' '.$config['delimiter'].' '.$arr['site_name'];
+if(!empty($arr['longtitle'])) $title = $arr['longtitle'].' '.$config['delimiter'].' '.$arr['site_name'];
 if(!empty($arr['specific_title'])) $title = $arr['specific_title'];
 $output.='<title>'.$title.'</title>'.$n;
 
