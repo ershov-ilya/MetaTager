@@ -10,16 +10,6 @@
 
 /* @var modX $modx */
 /* @var modResource $resource */
-/*
-<base href="[[++site_url]]"/>
-<link rel="canonical" href="[[~[[*id]]? &scheme=`full`]]" />
-<meta http-equiv="content-language" content="[[++cultureKey]]" />
-<link rel="shortcut icon" href="/favicon.ico" />
-
-<title>[[*specific_title:ne=``:then=`[[*specific_title]]`:else=`[[*pagetitle]] - [[++site_name]]` ]]</title>
-[[*keywords:ne=``:then=`<meta name="keywords" content="[[*keywords]]"/>`:else=`<meta name="keywords" content="[[$title]]"/>`]]
-[[*description:ne=``:then=`<meta name="description" content="[[*description]]"/>`:else=`<meta name="description" content="[[$introtext]]"/>`]]
- */
 
 /* CONFIG
 ------------------------------------*/
@@ -38,15 +28,17 @@ $defconfig = array(
 $config = array_merge($defconfig, $scriptProperties);
 $n="\n";
 if($config['minify']) $n='';
+$output=$n;
 
 /* READ values
 ------------------------------------*/
 $resource = $modx->getObject('modResource', $config['id']);
 
 // System options
-$arr['site_url'] = $modx->getOption('site_url');
-$arr['site_name'] = $modx->getOption('site_name');
-$arr['cultureKey'] = $modx->getOption('cultureKey');
+$arr['modx_charset'] = $modx->getOption('modx_charset');
+$arr['site_url']	 = $modx->getOption('site_url');
+$arr['site_name']	 = $modx->getOption('site_name');
+$arr['cultureKey']	 = $modx->getOption('cultureKey');
 
 // Page values
 $arr['pagetitle'] = $resource->get('pagetitle');
@@ -82,7 +74,7 @@ if($config['debug'])
 
 /* make OUTPUT
 ------------------------------------*/
-$output='';
+$output.='<meta charset="'.$arr['modx_charset'].'" />'.$n;
 $output.='<base href="'.$arr['site_url'].'"/>'.$n;
 $output.='<link rel="canonical" href="'.$arr['full_url'].'" />'.$n;
 $output.='<meta http-equiv="content-language" content="'.$arr['cultureKey'].'" />'.$n;
