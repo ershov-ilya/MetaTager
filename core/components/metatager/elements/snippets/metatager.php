@@ -11,6 +11,13 @@
 /* @var modX $modx */
 /* @var modResource $resource */
 
+function resetTV($modx, $id, $TVname)
+{
+	$tv = $modx->getObject('modTemplateVar', array('name'=>$TVname));
+	$tv->setValue($id, '');
+	$tv->save();
+}
+
 /* CONFIG
 ------------------------------------*/
 $defconfig = array(
@@ -22,6 +29,7 @@ $defconfig = array(
 	'spec_titleTVname' => "specific_title",
 	'scheme' => "full", // syntax of modX.makeUrl
 	'delimiter' => '-',
+	'migrate' => '1',
 	'minify' => '0',
 	'debug' => '0'
 );
@@ -50,11 +58,41 @@ $arr['description'] = $resource->get('description');
 // Keywords
 if(!empty($config['keywords'])) $arr['keywords'] = $config['keywords'];
 else $arr['keywords'] = $resource->getTVValue($config['kwTVname']);
+
 // SEOPro compability
 $seoPro = $modx->getService('seopro','seoPro',$modx->getOption('seopro.core_path',null,$modx->getOption('core_path').'components/seopro/').'model/seopro/',$config);
-$seoKeywords = $modx->getObject('seoKeywords', array('resource' => $id));
-if($seoKeywords){
-  $arr['keywords'] = $seoKeywords->get('keywords');
+$objSeoKeywords = $modx->getObject('seoKeywords', array('resource' => $id));
+
+// Модификация для переноса всех ключевых слов
+if(!$objSeoKeywords)
+{
+	$objSeoKeywords = $modx->newObject('seoKeywords', array('resource' => $id));
+	$objSeoKeywords->set('keywords', $arr['keywords']);
+	$objSeoKeywords->save();
+
+	if($config['migrate']) resetTV($modx, $id, $config['kwTVname']);
+}
+if($objSeoKeywords){
+	$seoKeywords = $objSeoKeywords->get('keywords');
+	if($seoKeywords == $arr['keywords'] && $config['migrate'])
+	{
+		resetTV($modx, $id, $config['kwTVname']);
+	}
+	elseif(empty($seoKeywords) && !empty($arr['keywords']))
+	{
+		$objSeoKeywords->set('keywords', $arr['keywords']);
+		$objSeoKeywords->save();
+
+		if($config['migrate']) resetTV($modx, $id, $config['kwTVname']);
+	}
+	elseif(!empty($seoKeywords))
+	{
+		$arr['keywords'] = $seoKeywords;
+	}
+}
+else
+{
+	$arr['keywords'] = $arr['pagetitle'];
 }
 
 // TVs
@@ -73,8 +111,8 @@ if($config['debug'])
 	print "</pre>";
 }
 
-/* making OUTPUT
-----------------------------------------------------------------------------------------------------*/
+/* make OUTPUT
+------------------------------------*/
 $output.='<meta charset="'.$arr['modx_charset'].'" />'.$n;
 $output.='<base href="'.$arr['site_url'].'"/>'.$n;
 $output.='<link rel="canonical" href="'.$arr['full_url'].'" />'.$n;
