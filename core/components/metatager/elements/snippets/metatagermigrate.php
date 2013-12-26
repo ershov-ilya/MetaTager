@@ -1,15 +1,13 @@
 <?php
 /**
  * Project: MetaTager
- * File:    metatager.php
- * Date: 25.12.13, time: 19:22
- * Author:  MrAgr3ssive
- * GitHub:  http://github.com/MrAgr3ssive
+ * File:    metatagermigrate.php
+ * Date: 26.12.13, time: 10:30
+ * Author:  ILYA ERSHOV  
+ * http://about.me/ershov.ilya
+ * GitHub:  https://github.com/ershov-ilya
  * Edited in PhpStorm.
  */
-
-/* @var modX $modx */
-/* @var modResource $resource */
 
 /* CONFIG
 ------------------------------------*/
@@ -17,7 +15,7 @@ $defconfig = array(
 	'id' => $modx->resource->get('id'),
 	'context' => $modx->context->key,
 	'keywords' => "",
-	'kwTVname' => "keywords", // keywords stored in TV
+	'kwTVname' => "meta_keywords", // keywords stored in TV
 	'favicon_path' => "/favicon.ico",
 	'spec_titleTVname' => "specific_title",
 	'scheme' => "full", // syntax of modX.makeUrl
@@ -50,11 +48,38 @@ $arr['description'] = $resource->get('description');
 // Keywords
 if(!empty($config['keywords'])) $arr['keywords'] = $config['keywords'];
 else $arr['keywords'] = $resource->getTVValue($config['kwTVname']);
+
 // SEOPro compability
 $seoPro = $modx->getService('seopro','seoPro',$modx->getOption('seopro.core_path',null,$modx->getOption('core_path').'components/seopro/').'model/seopro/',$config);
-$seoKeywords = $modx->getObject('seoKeywords', array('resource' => $id));
-if($seoKeywords){
-  $arr['keywords'] = $seoKeywords->get('keywords');
+$objSeoKeywords = $modx->getObject('seoKeywords', array('resource' => $id));
+// Модификация для переноса всех ключевых слов
+if(!$objSeoKeywords)
+{
+	$objSeoKeywords = $modx->newObject('seoKeywords', array('resource' => $id));
+	$objSeoKeywords->set('keywords', $arr['keywords']);
+	$objSeoKeywords->save();/**/
+}
+if($objSeoKeywords){
+	$seoKeywords = $objSeoKeywords->get('keywords');
+	if($seoKeywords != $arr['keywords'] && !empty($arr['keywords']))
+	{
+		$output.='<!-- seoKeywords="'.$seoKeywords.'" arr="'.$arr['keywords'].'" -->'.$n;
+
+		$objSeoKeywords->set('keywords', $arr['keywords']);
+		$objSeoKeywords->save(); /**/
+
+		$tv = $modx->getObject('modTemplateVar', array('name'=>$config['kwTVname']));
+		$tv->setValue($id, '');
+		$tv->save();
+	}
+	elseif(!empty($seoKeywords))
+	{
+		$arr['keywords'] = $seoKeywords;
+	}
+}/**/
+else
+{
+	$arr['keywords'] = $arr['pagetitle'];
 }
 
 // TVs
@@ -73,8 +98,8 @@ if($config['debug'])
 	print "</pre>";
 }
 
-/* making OUTPUT
-----------------------------------------------------------------------------------------------------*/
+/* make OUTPUT
+------------------------------------*/
 $output.='<meta charset="'.$arr['modx_charset'].'" />'.$n;
 $output.='<base href="'.$arr['site_url'].'"/>'.$n;
 $output.='<link rel="canonical" href="'.$arr['full_url'].'" />'.$n;
