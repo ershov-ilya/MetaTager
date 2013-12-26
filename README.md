@@ -9,8 +9,10 @@ Keywords output logic: "keywords (TV)" or "pagetitle"
 Description output logic: "description" or "introtext" or title from above
 
 Default config values:
-'id' => $modx->resource->get('id'),
-'context' => $modx->context->key,
+'id' => $modx->resource->get('id')
+
+'context' => $modx->context->key
+
 'keywords' => "",
 'kwTVname' => "keywords", // keywords stored in TV
 'favicon_path' => "/favicon.ico",
