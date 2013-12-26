@@ -21,7 +21,7 @@ Default config values:
 
 'favicon_path' => "/favicon.ico"
 
-'spec_titleTVname' => "specific_title"
+'spec_titleTVname' => "specific_title" // useful for Main page, where Content manager  often change title on last news
 
 'scheme' => "full", // syntax of modX.makeUrl
 
