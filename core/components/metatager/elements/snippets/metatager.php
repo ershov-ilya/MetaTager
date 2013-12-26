@@ -114,7 +114,7 @@ if($config['debug'])
 /* make OUTPUT
 ------------------------------------*/
 $output.='<meta charset="'.$arr['modx_charset'].'" />'.$n;
-$output.='<base href="'.$arr['site_url'].'"/>'.$n;
+$output.='<base href="'.$arr['site_url'].'" />'.$n;
 $output.='<link rel="canonical" href="'.$arr['full_url'].'" />'.$n;
 $output.='<meta http-equiv="content-language" content="'.$arr['cultureKey'].'" />'.$n;
 $output.='<link rel="shortcut icon" href="'.$config['favicon_path'].'" />'.$n;
@@ -129,12 +129,12 @@ $output.='<title>'.$title.'</title>'.$n;
 // Keywords
 // Logic: "keywords (TV)" or "pagetitle"
 $kw = ($arr['keywords'])?($arr['keywords']):($title);
-$output.='<meta name="keywords" content="'.$kw.'"/>'.$n;
+$output.='<meta name="keywords" content="'.$kw.'" />'.$n;
 
 // Description
 // Logic: "description" or "introtext" or title from above
 $description = ($arr['description'])?($arr['description']):($arr['introtext']);
 if(empty($description)) $description = $title;
-$output.='<meta name="description" content="'.$description.'"/>'."\n";
+$output.='<meta name="description" content="'.$description.'" />'."\n";
 
 if($config['debug']==0) print $output;
