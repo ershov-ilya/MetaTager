@@ -3,8 +3,8 @@
  * Project: MetaTager
  * File:    metatager.php
  * Date: 25.12.13, time: 19:22
- * Author:  MrAgr3ssive
- * GitHub:  http://github.com/MrAgr3ssive
+ * Author:  ershov-ilya
+ * GitHub:  http://github.com/ershov-ilya
  * Edited in PhpStorm.
  */
 
