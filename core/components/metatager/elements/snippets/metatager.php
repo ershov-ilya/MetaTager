@@ -14,8 +14,11 @@
 function resetTV($modx, $id, $TVname)
 {
 	$tv = $modx->getObject('modTemplateVar', array('name'=>$TVname));
-	$tv->setValue($id, '');
-	$tv->save();
+	if(!empty($tv))
+	{
+	  $tv->setValue($id, '');
+	  $tv->save();
+	}
 }
 
 /* CONFIG
