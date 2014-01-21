@@ -2,7 +2,7 @@
 /**
  * Project: MetaTager
  * File:    metatager.php
- * Date: 25.12.13, time: 19:22
+ * Date: 21.01.14, time: 21:50
  * Author:  ershov-ilya
  * GitHub:  http://github.com/ershov-ilya
  * Edited in PhpStorm.
@@ -70,10 +70,12 @@ $objSeoKeywords = $modx->getObject('seoKeywords', array('resource' => $id));
 if(!$objSeoKeywords)
 {
 	$objSeoKeywords = $modx->newObject('seoKeywords', array('resource' => $id));
-	$objSeoKeywords->set('keywords', $arr['keywords']);
-	$objSeoKeywords->save();
-
-	if($config['migrate']) resetTV($modx, $id, $config['kwTVname']);
+	if($objSeoKeywords)
+	{
+	  $objSeoKeywords->set('keywords', $arr['keywords']);
+	  $objSeoKeywords->save();  
+	  if($config['migrate']) resetTV($modx, $id, $config['kwTVname']);
+	}
 }
 if($objSeoKeywords){
 	$seoKeywords = $objSeoKeywords->get('keywords');
