@@ -217,6 +217,7 @@ pip-log.txt
 #############
 ## phpStorm
 #############
+.idea/
 *.iws
 workspace.xml
 tasks.xml
