@@ -1,5 +1,6 @@
 <?php
 /**
+ * Snippet: MetaTager
  * Project: MetaTager
  * File:    metatager.php
  * Date: 21.01.14, time: 21:50
