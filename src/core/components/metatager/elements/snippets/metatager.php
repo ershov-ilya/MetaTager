@@ -3,7 +3,7 @@
  * Snippet: MetaTager
  * Project: MetaTager
  * File:    metatager.php
- * Date: 21.01.14, time: 21:50
+ * Update date: 07.04.14, time: 19:20
  * Author:  ershov-ilya
  * GitHub:  http://github.com/ershov-ilya
  * Edited in PhpStorm.
@@ -67,7 +67,7 @@ else $arr['keywords'] = $resource->getTVValue($config['kwTVname']);
 $seoPro = $modx->getService('seopro','seoPro',$modx->getOption('seopro.core_path',null,$modx->getOption('core_path').'components/seopro/').'model/seopro/',$config);
 $objSeoKeywords = $modx->getObject('seoKeywords', array('resource' => $id));
 
-// Модификация для переноса всех ключевых слов
+// ?????????„?????°?†???? ???»?? ???µ?€?µ???????° ?????µ?… ???»???‡?µ???‹?… ???»????
 if(!$objSeoKeywords)
 {
 	$objSeoKeywords = $modx->newObject('seoKeywords', array('resource' => $id));
@@ -119,10 +119,11 @@ if($config['debug'])
 
 /* make OUTPUT
 ------------------------------------*/
-$output.='<meta charset="'.$arr['modx_charset'].'" />'.$n;
 $output.='<base href="'.$arr['site_url'].'" />'.$n;
-$output.='<link rel="canonical" href="'.$arr['full_url'].'" />'.$n;
+$output.='<meta charset="'.$arr['modx_charset'].'" />'.$n;
 $output.='<meta http-equiv="content-language" content="'.$arr['cultureKey'].'" />'.$n;
+if(isset($config['adaptive'])) $output.='<meta name="viewport" content="width=device-width, initial-scale=1">'.$n;
+$output.='<link rel="canonical" href="'.$arr['full_url'].'" />'.$n;
 $output.='<link rel="shortcut icon" href="'.$config['favicon_path'].'" />'.$n;
 
 // Title
