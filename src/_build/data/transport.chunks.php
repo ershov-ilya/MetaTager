@@ -2,7 +2,7 @@
 
 $chunks = array();
 
-
+/*
 $chunk = $modx->newObject('modChunk', array(
     'name'          => 'MetaTager',
     'description'   => 'Устанавливает в систему шаблонный чанк $metatager для реализации логики вывода мета-тегов',
@@ -31,5 +31,5 @@ $chunk = $modx->newObject('modChunk', array(
 ));
 $chunks[] = $chunk;
 
-
+*/
 return $chunks;
