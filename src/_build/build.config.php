@@ -6,7 +6,7 @@ ini_set('display_errors', true);
 /*
  * Include MODX config
  */
-require_once dirname(dirname(dirname(dirname(__FILE__)))).'/core/config/config.inc.php';
+require_once dirname(dirname(dirname(__FILE__))).'/core/config/config.inc.php';
 
 /* define sources */
 $root = dirname(dirname(__FILE__)).'/'; 

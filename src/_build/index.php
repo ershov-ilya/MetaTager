@@ -10,8 +10,8 @@ define('NAMESPACE_NAME', PKG_NAME_LOWER);
 define('PKG_PATH', PKG_NAME_LOWER);
 define('PKG_CATEGORY', PKG_NAME);
 
-$pkg_version = '1.2.0';
-$pkg_release = 'beta';
+$pkg_version = '1.3.0';
+$pkg_release = 'pl';
 define('PKG_VERSION', $pkg_version); 
 define('PKG_RELEASE', $pkg_release); 
 
@@ -42,7 +42,7 @@ $builder = new modPackageBuilder($modx);
 /*
  * create Package
  */
-$builder->createPackage(PKG_NAME_LOWER,PKG_VERSION,PKG_RELEASE);
+$builder->createPackage(PKG_NAME,PKG_VERSION,PKG_RELEASE);
 $builder->registerNamespace(PKG_NAME_LOWER,false,true,'{core_path}components/'.PKG_NAME_LOWER.'/');
 
 /*
@@ -104,16 +104,17 @@ unset($plugins);
 
 
 /* add snippets */
-/*$snippets = include $sources['data'].'transport.snippets.php';
+$snippets = include $sources['data'].'transport.snippets.php';
 if (!is_array($snippets)) {
     $modx->log(modX::LOG_LEVEL_ERROR,'Could not package in snippets.');
 } else {
     $category->addMany($snippets);
-    $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($snippets).' snippets.');
+    $modx->log(modX::LOG_LEVEL_INFO,'Упаковано сниппетов = '.count($snippets).'.');
 }
 unset($snippets);
 
 /* add chunks */
+/*
 $chunks = include $sources['data'].'transport.chunks.php';
 if (!is_array($chunks)) {
     $modx->log(modX::LOG_LEVEL_ERROR,'Не удаётся упаковать чанки.');
@@ -165,15 +166,15 @@ $vehicle->resolve('file',array(
     'source' => $sources['source_core'],
     'target' => "return MODX_CORE_PATH . 'components/';",
 ));
-$modx->log(modX::LOG_LEVEL_INFO,'Упаковано в CorePath = '); flush();
+$modx->log(modX::LOG_LEVEL_INFO,'Упаковано в Core = '); flush();
 
 // Add assets source
 $vehicle->resolve('file',array(
     'source' => $sources['source_assets'],
     'target' => "return MODX_ASSETS_PATH . 'components/';",
 ));
-$modx->log(modX::LOG_LEVEL_INFO,'Упаковано в AssetsPath = '); flush();
- 
+$modx->log(modX::LOG_LEVEL_INFO,'Упаковано в Assets = '); flush();
+
 
 $modx->log(modX::LOG_LEVEL_INFO,'Упаковано в резолверах resolvers = '); flush();
 
