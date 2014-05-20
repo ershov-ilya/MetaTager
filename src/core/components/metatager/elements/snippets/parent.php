@@ -3,7 +3,7 @@
  * Snippet: parent
  * Project: MetaTager
  * File:    title.php
- * Date: 20.05.14, time: 10:27
+ * Date: 20.05.14, time: 17:30
  * Author:  ILYA ERSHOV  
  * http://about.me/ershov.ilya
  * GitHub:  https://github.com/ershov-ilya
@@ -26,6 +26,7 @@ $resource = $modx->getObject('modResource', $config['id']);
 $parent = $resource->get('parent');
 
 if(empty($config['field'])) return $parent;
+if($parent==0) return '';
 
 $id=$parent;
 $field=$config['field'];
