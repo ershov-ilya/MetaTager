@@ -144,4 +144,4 @@ $description = ($arr['description'])?($arr['description']):($arr['introtext']);
 if(empty($description)) $description = $title;
 $output.='<meta name="description" content="'.$description.'" />'."\n";
 
-if($config['debug']==0) print $output;
+if($config['debug']==0) return $output;
