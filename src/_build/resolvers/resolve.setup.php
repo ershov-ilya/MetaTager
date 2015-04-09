@@ -6,6 +6,8 @@
  * @var array $options
  */
 
+return true;
+
 if ($object->xpdo) {
 	/** @var modX $modx */
 	$modx =& $object->xpdo;
@@ -14,6 +16,7 @@ if ($object->xpdo) {
 	switch ($options[xPDOTransport::PACKAGE_ACTION]) {
 		case xPDOTransport::ACTION_INSTALL:
 		case xPDOTransport::ACTION_UPGRADE:
+            /*
 			// Checking and installing required packages
 			$packages = array(
 				'pdoTools' => array(
@@ -42,6 +45,7 @@ if ($object->xpdo) {
 					$modx->log($level, $response['message']);
 				}
 			}
+            */
 			$success = true;
 			break;
 
