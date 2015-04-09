@@ -1,13 +1,29 @@
-Changelog for MetaTager.
+/* MetaTager ver.1.3.2
+---------------------------------------------------------*/
+- Добавил adminToolBar
+- Исправление совместимости с SEOPro
 
-1.0.0-beta
-==============
-- Opimized for MODX 2.3
-- Improved processors
-- Disabled plugin and system settings
-- Improved UI
-- Added grid actions
-- Added icons in menu
-- Added search in grid
-- Grid sorting
-- Enable and disable actions
+/* MetaTager ver.1.3.0
+---------------------------------------------------------*/
+- Рефакторинг сниппета MetaTager
+- Добавлены сниппеты: CopyDate, GET, parent, title
+
+/* MetaTager ver.1.2.0-beta
+---------------------------------------------------------*/
+- Добавлена совместимость со Sterc SEOPro
+- Добавлен вывод мета тега Charset
+
+/* MetaTager ver.1.1.1-beta
+---------------------------------------------------------*/
+- Добавлен чанк title
+- В пакет добавлена библиотека Grayscale под JQuery
+
+/* MetaTager ver.1.1.0-beta
+---------------------------------------------------------*/
+- Добавлены чанки preHead и postHead
+- В пакет добавлены библиотеки JQuery и её плагины (Colorbox, Vegas, timers и т.д.) путь записи /assets/components/metatager/lib/
+
+/* MetaTager ver.1.0.0-beta
+---------------------------------------------------------*/
+- Создан чанк metatager
+- Первый выпуск

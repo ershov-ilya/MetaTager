@@ -1,10 +1,13 @@
 --------------------
 MetaTager
 --------------------
-Author: John Doe <john@doe.com>
+ * Author:   ershov-ilya
+ * GitHub:   https://github.com/ershov-ilya/
+ * About me: http://about.me/ershov.ilya (EN)
+ * Website:  http://ershov.pw/ (RU)
 --------------------
 
-A basic Extra for MODx Revolution.
+An Extra for MODx Revolution.
 
 Feel free to suggest ideas/improvements/bugs on GitHub:
-http://github.com/username/MetaTager/issues
+https://github.com/ershov-ilya/MetaTager/issues
