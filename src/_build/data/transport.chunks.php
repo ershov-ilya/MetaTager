@@ -2,34 +2,33 @@
 
 $chunks = array();
 
-$chunk = $modx->newObject('modChunk', array(
-    'name'          => 'adminToolBar',
-    'description'   => 'Выводит тулбар для авторизованных пользователей',
-    'snippet'       => getSnippetContent($sources['source_core'].'/elements/chunks/admintoolbar.chunk.html'),
-));
-$chunks[] = $chunk;
+$tmp = array(
+	'tpl.MetaTager.item' => array(
+		'file' => 'item',
+		'description' => '',
+	),
+);
 
-/*
-$chunk = $modx->newObject('modChunk', array(
-    'name'          => 'preHead',
-    'description'   => 'Чанк preHead содержит вызов $MetaTager, подключает стили и JQuery, делает вызов ф-ции ready()',
-    'snippet'       => getSnippetContent($sources['source_core'].'/elements/chunks/preHead.html'),
-));
-$chunks[] = $chunk;
+// Save chunks for setup options
+$BUILD_CHUNKS = array();
 
-$chunk = $modx->newObject('modChunk', array(
-    'name'          => 'postHead',
-    'description'   => 'Чанк postHead завершает вызов ф-ции ready()',
-    'snippet'       => getSnippetContent($sources['source_core'].'/elements/chunks/postHead.html'),
-));
-$chunks[] = $chunk;
+foreach ($tmp as $k => $v) {
+	/* @avr modChunk $chunk */
+	$chunk = $modx->newObject('modChunk');
+	$chunk->fromArray(array(
+		'id' => 0,
+		'name' => $k,
+		'description' => @$v['description'],
+		'snippet' => file_get_contents($sources['source_core'] . '/elements/chunks/chunk.' . $v['file'] . '.tpl'),
+		'static' => BUILD_CHUNK_STATIC,
+		'source' => 1,
+		'static_file' => 'core/components/' . PKG_NAME_LOWER . '/elements/chunks/chunk.' . $v['file'] . '.tpl',
+	), '', true, true);
 
-$chunk = $modx->newObject('modChunk', array(
-    'name'          => 'title',
-    'description'   => 'Чанк $title пытается вывести *longtitle, если не получается выводит *pagetitle',
-    'snippet'       => getSnippetContent($sources['source_core'].'/elements/chunks/title.html'),
-));
-$chunks[] = $chunk;
+	$chunks[] = $chunk;
 
-*/
+	$BUILD_CHUNKS[$k] = file_get_contents($sources['source_core'] . '/elements/chunks/chunk.' . $v['file'] . '.tpl');
+}
+
+unset($tmp);
 return $chunks;

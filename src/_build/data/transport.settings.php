@@ -2,16 +2,27 @@
 
 $settings = array();
 
-$setting = $modx->newObject('modSystemSetting');
-$setting->fromArray(array(
-    'key' => 'key',     // set unique key
-    'value' => '',
-    'xtype' => 'textfield',     //  textfield, numberfield, combo-boolean or other
-    'namespace' => NAMESPACE_NAME,
-    'area' => 'site',
-),'',true,true);
-$settings[] = $setting;
+$tmp = array(/*
+	'some_setting' => array(
+		'xtype' => 'combo-boolean',
+		'value' => true,
+		'area' => 'metatager_main',
+	),
+	*/
+);
 
+foreach ($tmp as $k => $v) {
+	/* @var modSystemSetting $setting */
+	$setting = $modx->newObject('modSystemSetting');
+	$setting->fromArray(array_merge(
+		array(
+			'key' => 'metatager_' . $k,
+			'namespace' => PKG_NAME_LOWER,
+		), $v
+	), '', true, true);
 
-unset($setting);
+	$settings[] = $setting;
+}
+
+unset($tmp);
 return $settings;

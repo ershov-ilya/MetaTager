@@ -1,15 +1,10 @@
-Устанавливает в систему сниппеты:
-1) MetaTager
-Этот сниппет выводит все необходимые мета-теги: title, description, keywords, base, link[canonical] and favicon. Он пытается заполнить все необходимые поля автоматически, на основе имеющихся данных.
+--------------------
+MetaTager
+--------------------
+Author: John Doe <john@doe.com>
+--------------------
 
-2) CopyDate
-Сниппет для вывода текущего года и знака копирайта
+A basic Extra for MODx Revolution.
 
-3) GET
-Сниппет для получения значения поля $_GET, $_POST или $_REQUEST
-
-4) parent
-Сниппет для получения ID родителя или любого другого поля у текущего ресурса, если указать параметр &id - можно получить поля родителя любого другого ресурса
-
-5) title
-Сниппет который выводит longtitle, а если там пусто - выведет pagetitle
+Feel free to suggest ideas/improvements/bugs on GitHub:
+http://github.com/username/MetaTager/issues

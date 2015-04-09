@@ -2,31 +2,53 @@
 
 $plugins = array();
 
-/*
- * New plugin
- */
-$plugin = $modx->newObject('modPlugin');
-$plugin->set('id', 1);
-$plugin->set('name', 'mypackage');
-$plugin->set('description', '');
-$plugin->set('plugincode', getSnippetContent($sources['source_core'].'/elements/plugins/plugin.php'));
+$tmp = array(/*
+	'MetaTager' => array(
+		'file' => 'metatager',
+		'description' => '',
+		'events' => array(
+			'OnManagerPageInit' => array()
+		)
+	)
+	*/
+);
 
+foreach ($tmp as $k => $v) {
+	/* @avr modplugin $plugin */
+	$plugin = $modx->newObject('modPlugin');
+	$plugin->fromArray(array(
+		'name' => $k,
+		'category' => 0,
+		'description' => @$v['description'],
+		'plugincode' => getSnippetContent($sources['source_core'] . '/elements/plugins/plugin.' . $v['file'] . '.php'),
+		'static' => BUILD_PLUGIN_STATIC,
+		'source' => 1,
+		'static_file' => 'core/components/' . PKG_NAME_LOWER . '/elements/plugins/plugin.' . $v['file'] . '.php'
+	), '', true, true);
 
-/* add plugin events */
-$events = array(); 
-$events['OnHandleRequest']= $modx->newObject('modPluginEvent');
-$events['OnHandleRequest']->fromArray(array(
-    'event' => 'OnHandleRequest',
-    'priority' => 0,
-    'propertyset' => 0,
-),'',true,true);
-$plugin->addMany($events, 'PluginEvents');
-$modx->log(xPDO::LOG_LEVEL_INFO,'Packaged in '.count($events).' Plugin Events.'); flush();
- 
-$plugins[] = $plugin;
-/*
- * 
- */
+	$events = array();
+	if (!empty($v['events'])) {
+		foreach ($v['events'] as $k2 => $v2) {
+			/* @var modPluginEvent $event */
+			$event = $modx->newObject('modPluginEvent');
+			$event->fromArray(array_merge(
+				array(
+					'event' => $k2,
+					'priority' => 0,
+					'propertyset' => 0,
+				), $v2
+			), '', true, true);
+			$events[] = $event;
+		}
+		unset($v['events']);
+	}
 
+	if (!empty($events)) {
+		$plugin->addMany($events);
+	}
+
+	$plugins[] = $plugin;
+}
+
+unset($tmp, $properties);
 return $plugins;
-
