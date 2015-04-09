@@ -2,13 +2,17 @@
 
 $settings = array();
 
-$tmp = array(/*
-	'some_setting' => array(
-		'xtype' => 'combo-boolean',
-		'value' => true,
-		'area' => 'metatager_main',
-	),
-	*/
+$tmp = array(
+    'title_delimiter' => array(
+        'xtype' => 'textfield',
+        'value' => '|',
+        'area' => 'metatager_main',
+    ),
+    'favicon_path' => array(
+        'xtype' => 'textfield',
+        'value' => '/favicon.ico',
+        'area' => 'metatager_main',
+    )
 );
 
 foreach ($tmp as $k => $v) {

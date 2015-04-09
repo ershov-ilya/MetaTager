@@ -73,6 +73,7 @@ if (defined('BUILD_SETTING_UPDATE')) {
 }
 
 /* load plugins events */
+/*
 if (defined('BUILD_EVENT_UPDATE')) {
 	$events = include $sources['data'] . 'transport.events.php';
 	if (!is_array($events)) {
@@ -93,6 +94,7 @@ if (defined('BUILD_EVENT_UPDATE')) {
 }
 
 /* package in default access policy */
+/*
 if (defined('BUILD_POLICY_UPDATE')) {
 	$attributes = array(
 		xPDOTransport::PRESERVE_KEYS => false,
@@ -113,6 +115,7 @@ if (defined('BUILD_POLICY_UPDATE')) {
 }
 
 /* package in default access policy templates */
+/*
 if (defined('BUILD_POLICY_TEMPLATE_UPDATE')) {
 	$templates = include dirname(__FILE__) . '/data/transport.policytemplates.php';
 	$attributes = array(
@@ -143,35 +146,36 @@ if (defined('BUILD_POLICY_TEMPLATE_UPDATE')) {
 }
 
 /* load menus */
-if (defined('BUILD_MENU_UPDATE')) {
-	$menus = include $sources['data'] . 'transport.menu.php';
-	$attributes = array(
-		xPDOTransport::PRESERVE_KEYS => true,
-		xPDOTransport::UPDATE_OBJECT => BUILD_MENU_UPDATE,
-		xPDOTransport::UNIQUE_KEY => 'text',
-		xPDOTransport::RELATED_OBJECTS => true,
-		xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array(
-			'Action' => array(
-				xPDOTransport::PRESERVE_KEYS => false,
-				xPDOTransport::UPDATE_OBJECT => BUILD_ACTION_UPDATE,
-				xPDOTransport::UNIQUE_KEY => array('namespace', 'controller'),
-			),
-		),
-	);
-	if (is_array($menus)) {
-		foreach ($menus as $menu) {
-			$vehicle = $builder->createVehicle($menu, $attributes);
-			$builder->putVehicle($vehicle);
-			/* @var modMenu $menu */
-			$modx->log(modX::LOG_LEVEL_INFO, 'Packaged in menu "' . $menu->get('text') . '".');
-		}
-	}
-	else {
-		$modx->log(modX::LOG_LEVEL_ERROR, 'Could not package in menu.');
-	}
-	unset($vehicle, $menus, $menu, $attributes);
-}
-
+//
+//if (defined('BUILD_MENU_UPDATE')) {
+//	$menus = include $sources['data'] . 'transport.menu.php';
+//	$attributes = array(
+//		xPDOTransport::PRESERVE_KEYS => true,
+//		xPDOTransport::UPDATE_OBJECT => BUILD_MENU_UPDATE,
+//		xPDOTransport::UNIQUE_KEY => 'text',
+//		xPDOTransport::RELATED_OBJECTS => true,
+//		xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array(
+//			'Action' => array(
+//				xPDOTransport::PRESERVE_KEYS => false,
+//				xPDOTransport::UPDATE_OBJECT => BUILD_ACTION_UPDATE,
+//				xPDOTransport::UNIQUE_KEY => array('namespace', 'controller'),
+//			),
+//		),
+//	);
+//	if (is_array($menus)) {
+//		foreach ($menus as $menu) {
+//			$vehicle = $builder->createVehicle($menu, $attributes);
+//			$builder->putVehicle($vehicle);
+//			/* @var modMenu $menu */
+//			$modx->log(modX::LOG_LEVEL_INFO, 'Packaged in menu "' . $menu->get('text') . '".');
+//		}
+//	}
+//	else {
+//		$modx->log(modX::LOG_LEVEL_ERROR, 'Could not package in menu.');
+//	}
+//	unset($vehicle, $menus, $menu, $attributes);
+//}
+//
 
 /* create category */
 $modx->log(xPDO::LOG_LEVEL_INFO, 'Created category.');
@@ -221,6 +225,7 @@ if (defined('BUILD_CHUNK_UPDATE')) {
 }
 
 /* add plugins */
+/*
 if (defined('BUILD_PLUGIN_UPDATE')) {
 	$attr[xPDOTransport::RELATED_OBJECT_ATTRIBUTES]['Plugins'] = array(
 		xPDOTransport::PRESERVE_KEYS => false,
