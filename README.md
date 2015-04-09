@@ -5,11 +5,13 @@ This snippet outputs meta tags: title, description, keywords, base, link[canonic
 
 Use in template, like this:
 
-&lt;!DOCTYPE html&gt;
-
-&lt;html lang=&quot;ru&quot;&gt;
-
-&lt;head&gt;
-
- [[MetaTager]]
-
+```
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+[[MetaTager]]
+...
+<body>
+[[!adminToolBar]]
+...
+```
