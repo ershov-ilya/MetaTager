@@ -6,7 +6,7 @@ $tmp = array(
 	'adminToolBar' => array(
 		'file' => 'admintoolbar',
 		'description' => '',
-	),
+	)
 );
 
 // Save chunks for setup options
