@@ -42,8 +42,11 @@ foreach ($tmp as $k => $v) {
 		'static_file' => 'core/components/' . PKG_NAME_LOWER . '/elements/snippets/snippet.' . $v['file'] . '.php',
 	), '', true, true);
 
-	$properties = include $sources['build'] . 'properties/properties.' . $v['file'] . '.php';
-	$snippet->setProperties($properties);
+    if(file_exists($sources['build'] . 'properties/properties.' . $v['file'] . '.php'))
+    {
+        $properties = include $sources['build'] . 'properties/properties.' . $v['file'] . '.php';
+        $snippet->setProperties($properties);
+    }
 
 	$snippets[] = $snippet;
 }
