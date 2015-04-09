@@ -3,8 +3,8 @@
 $chunks = array();
 
 $tmp = array(
-	'tpl.MetaTager.item' => array(
-		'file' => 'item',
+	'adminToolBar' => array(
+		'file' => 'admintoolbar',
 		'description' => '',
 	),
 );
