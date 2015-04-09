@@ -3,10 +3,45 @@
 $snippets = array();
 
 $tmp = array(
-	'MetaTager' => array(
-		'file' => 'metatager',
-		'description' => '',
-	),
+    'MetaTager' => array(
+        'file' => 'metatager',
+        'description' => '',
+    ),
+);
+
+$tmp = array(
+    'adminToolBar' => array(
+        'file' => 'admintoolbar',
+        'description' => '',
+    ),
+);
+
+$tmp = array(
+    'CopyDate' => array(
+        'file' => 'copydate',
+        'description' => '',
+    ),
+);
+
+$tmp = array(
+    'GET' => array(
+        'file' => 'get',
+        'description' => '',
+    ),
+);
+
+$tmp = array(
+    'title' => array(
+        'file' => 'title',
+        'description' => '',
+    ),
+);
+
+$tmp = array(
+    'view_count' => array(
+        'file' => 'view_count',
+        'description' => '',
+    ),
 );
 
 foreach ($tmp as $k => $v) {

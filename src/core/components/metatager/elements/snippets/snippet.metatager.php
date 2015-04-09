@@ -1,38 +1,147 @@
 <?php
-/** @var array $scriptProperties */
-/** @var MetaTager $MetaTager */
-if (!$MetaTager = $modx->getService('metatager', 'MetaTager', $modx->getOption('metatager_core_path', null, $modx->getOption('core_path') . 'components/metatager/') . 'model/metatager/', $scriptProperties)) {
-	return 'Could not load MetaTager class!';
+/**
+ * Snippet: MetaTager
+ * Project: MetaTager
+ * File:    metatager.snippet.php
+ * Update date: 07.04.14, time: 19:20
+ * Author:  ershov-ilya
+ * GitHub:  http://github.com/ershov-ilya
+ * Edited in PhpStorm.
+ */
+
+/* @var modX $modx */
+/* @var modResource $resource */
+
+function resetTV($modx, $id, $TVname)
+{
+	$tv = $modx->getObject('modTemplateVar', array('name'=>$TVname));
+	if(!empty($tv))
+	{
+	  $tv->setValue($id, '');
+	  $tv->save();
+	}
 }
 
-// Do your snippet code here. This demo grabs 5 items from our custom table.
-$tpl = $modx->getOption('tpl', $scriptProperties, 'Item');
-$sortby = $modx->getOption('sortby', $scriptProperties, 'name');
-$sortdir = $modx->getOption('sortbir', $scriptProperties, 'ASC');
-$limit = $modx->getOption('limit', $scriptProperties, 5);
-$outputSeparator = $modx->getOption('outputSeparator', $scriptProperties, "\n");
-$toPlaceholder = $modx->getOption('toPlaceholder', $scriptProperties, false);
+/* CONFIG
+------------------------------------*/
+$defconfig = array(
+	'id' => $modx->resource->get('id'),
+	'context' => $modx->context->key,
+	'keywords' => "",
+	'kwTVname' => "keywords", // keywords stored in TV
+	'favicon_path' => "/favicon.ico",
+	'spec_titleTVname' => "specific_title",
+	'scheme' => "full", // syntax of modX.makeUrl
+	'delimiter' => '-',
+	'migrate' => '1',
+	'minify' => '0',
+	'debug' => '0'
+);
+$config = array_merge($defconfig, $scriptProperties);
+$n="\n";
+if($config['minify']) $n='';
+$output=$n;
+$id=$config['id'];
 
-// Build query
-$c = $modx->newQuery('MetaTagerItem');
-$c->sortby($sortby, $sortdir);
-$c->limit($limit);
-$items = $modx->getIterator('MetaTagerItem', $c);
+/* READ values
+------------------------------------*/
+$resource = $modx->getObject('modResource', $id);
 
-// Iterate through items
-$list = array();
-/** @var MetaTagerItem $item */
-foreach ($items as $item) {
-	$list[] = $modx->getChunk($tpl, $item->toArray());
+// System options
+$arr['modx_charset'] = $modx->getOption('modx_charset');
+$arr['site_url']	 = $modx->getOption('site_url');
+$arr['site_name']	 = $modx->getOption('site_name');
+$arr['cultureKey']	 = $modx->getOption('cultureKey');
+
+// Page values
+$arr['pagetitle'] = $resource->get('pagetitle');
+$arr['longtitle'] = $resource->get('longtitle');
+$arr['introtext'] = $resource->get('introtext');
+$arr['description'] = $resource->get('description');
+
+// Keywords
+if(!empty($config['keywords'])) $arr['keywords'] = $config['keywords'];
+else $arr['keywords'] = $resource->getTVValue($config['kwTVname']);
+
+// SEOPro compability
+$seoPro = $modx->getService('seopro','seoPro',$modx->getOption('seopro.core_path',null,$modx->getOption('core_path').'components/seopro/').'model/seopro/',$config);
+$objSeoKeywords = $modx->getObject('seoKeywords', array('resource' => $id));
+
+// Совместимость с SEO Pro
+if(!$objSeoKeywords)
+{
+	$objSeoKeywords = $modx->newObject('seoKeywords', array('resource' => $id));
+	if($objSeoKeywords)
+	{
+	  $objSeoKeywords->set('keywords', $arr['keywords']);
+	  $objSeoKeywords->save();  
+	  if($config['migrate']) resetTV($modx, $id, $config['kwTVname']);
+	}
+}
+if($objSeoKeywords){
+	$seoKeywords = $objSeoKeywords->get('keywords');
+	if($seoKeywords == $arr['keywords'] && $config['migrate'])
+	{
+		resetTV($modx, $id, $config['kwTVname']);
+	}
+	elseif(empty($seoKeywords) && !empty($arr['keywords']))
+	{
+		$objSeoKeywords->set('keywords', $arr['keywords']);
+		$objSeoKeywords->save();
+
+		if($config['migrate']) resetTV($modx, $id, $config['kwTVname']);
+	}
+	elseif(!empty($seoKeywords))
+	{
+		$arr['keywords'] = $seoKeywords;
+	}
+}
+else
+{
+	$arr['keywords'] = $arr['pagetitle'];
 }
 
-// Output
-$output = implode($outputSeparator, $list);
-if (!empty($toPlaceholder)) {
-	// If using a placeholder, output nothing and set output to specified placeholder
-	$modx->setPlaceholder($toPlaceholder, $output);
+// TVs
+$arr['specific_title'] = $resource->getTVValue($config['spec_titleTVname']);
 
-	return '';
+// Snippets return
+$arr['full_url'] = $modx->makeUrl($id, $config['context'], '', $config['scheme']);
+
+if($config['debug'])
+{
+	print "<pre>";
+	print "Config:\n";
+	print_r($config);
+	print "Calculated:\n";
+	print_r($arr);
+	print "</pre>";
 }
-// By default just return output
-return $output;
+
+/* make OUTPUT
+------------------------------------*/
+$output.='<base href="'.$arr['site_url'].'" />'.$n;
+$output.='<meta charset="'.$arr['modx_charset'].'" />'.$n;
+$output.='<meta http-equiv="content-language" content="'.$arr['cultureKey'].'" />'.$n;
+if(isset($config['adaptive'])) $output.='<meta name="viewport" content="width=device-width, initial-scale=1">'.$n;
+$output.='<link rel="canonical" href="'.$arr['full_url'].'" />'.$n;
+$output.='<link rel="shortcut icon" href="'.$config['favicon_path'].'" />'.$n;
+
+// Title
+// Logic: "specific_title (TV)" or "longtitle - sitename" or "pagetitle - sitename"
+$title = $arr['pagetitle'].' '.$config['delimiter'].' '.$arr['site_name'];
+if(!empty($arr['longtitle'])) $title = $arr['longtitle'].' '.$config['delimiter'].' '.$arr['site_name'];
+if(!empty($arr['specific_title'])) $title = $arr['specific_title'];
+$output.='<title>'.$title.'</title>'.$n;
+
+// Keywords
+// Logic: "keywords (TV)" or "pagetitle"
+$kw = ($arr['keywords'])?($arr['keywords']):($title);
+$output.='<meta name="keywords" content="'.$kw.'" />'.$n;
+
+// Description
+// Logic: "description" or "introtext" or title from above
+$description = ($arr['description'])?($arr['description']):($arr['introtext']);
+if(empty($description)) $description = $title;
+$output.='<meta name="description" content="'.$description.'" />'."\n";
+
+if($config['debug']==0) return $output;
