@@ -2,7 +2,7 @@
 /**
  * Snippet: MetaTager
  * Project: MetaTager
- * File:    metatager.php
+ * File:    metatager.snippet.php
  * Update date: 07.04.14, time: 19:20
  * Author:  ershov-ilya
  * GitHub:  http://github.com/ershov-ilya

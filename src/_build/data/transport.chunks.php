@@ -2,14 +2,14 @@
 
 $chunks = array();
 
-/*
 $chunk = $modx->newObject('modChunk', array(
-    'name'          => 'MetaTager',
-    'description'   => 'Устанавливает в систему шаблонный чанк $metatager для реализации логики вывода мета-тегов',
-    'snippet'       => getSnippetContent($sources['source_core'].'/elements/chunks/metatager.html'),
+    'name'          => 'adminToolBar',
+    'description'   => 'Выводит тулбар для авторизованных пользователей',
+    'snippet'       => getSnippetContent($sources['source_core'].'/elements/chunks/admintoolbar.chunk.html'),
 ));
 $chunks[] = $chunk;
 
+/*
 $chunk = $modx->newObject('modChunk', array(
     'name'          => 'preHead',
     'description'   => 'Чанк preHead содержит вызов $MetaTager, подключает стили и JQuery, делает вызов ф-ции ready()',

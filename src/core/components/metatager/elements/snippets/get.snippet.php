@@ -2,7 +2,7 @@
 /**
  * Snippet: GET
  * Project: MetaTager
- * File:    get.php
+ * File:    get.snippet.php
  * Date: 16.04.14, time: 08:40
  * Author:  ILYA ERSHOV  
  * http://about.me/ershov.ilya

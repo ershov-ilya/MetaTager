@@ -1,9 +1,9 @@
 <?php
 /**
- * Snippet: title
+ * Snippet: parent
  * Project: MetaTager
- * File:    title.php
- * Date: 02.12.13, time: 14:37
+ * File:    title.snippet.php
+ * Date: 20.05.14, time: 17:30
  * Author:  ILYA ERSHOV  
  * http://about.me/ershov.ilya
  * GitHub:  https://github.com/ershov-ilya
@@ -14,7 +14,7 @@
 /* CONFIG
 ------------------------------------*/
 $defconfig = array(
-	'id' => $modx->resource->get('id'),
+	'id' => $modx->resource->get('id')
 );
 
 $config = array_merge($defconfig, $scriptProperties);
@@ -23,12 +23,15 @@ $config = array_merge($defconfig, $scriptProperties);
 ------------------------------------*/
 $resource = $modx->getObject('modResource', $config['id']);
 
-// Page values
-$arr['pagetitle'] = $resource->get('pagetitle');
-$arr['longtitle'] = $resource->get('longtitle');
+$parent = $resource->get('parent');
 
-$output = '';
-if(!empty($arr['longtitle'])) $output = $arr['longtitle'];
-else  $output = $arr['pagetitle'];
+if(empty($config['field'])) return $parent;
+if($parent==0) return '';
 
-return $output;
+$id=$parent;
+$field=$config['field'];
+$resource = $modx->getObject('modResource', $id);
+$value = $resource->get($field);
+
+
+return $value;
